@@ -16,7 +16,7 @@ return new class extends Migration
 		Schema::create('payments', function(Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('name_client', 255);
-            $table->string('cpf');
+            $table->string('cpf', 11);
             $table->text('description')->nullable();
             $table->decimal('amount', 15, 2);
             $table->decimal('fee_amount', 15, 2);

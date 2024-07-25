@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Services;
 
+use App\AppHelper;
 use App\Enums\PaymentStatusEnum;
 use App\Repositories\PaymentRepository;
 use App\Repositories\PaymentMethodRepository;
@@ -76,6 +77,8 @@ class PaymentService extends AppService
             $treatedValue = $this->calculateNetAmount((float)$data['amount'], (float)$paymentMethod->fee);
             $data['fee_amount'] = $treatedValue['fee_amount'];
             $data['percent_tax'] = (float)$paymentMethod->fee;
+
+            $data['cpf'] = AppHelper::removeSpecialCharacters($data['cpf']);
 
             // Criando pagamento
             $payment = $this->create($data, true);

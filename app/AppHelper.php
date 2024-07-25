@@ -31,4 +31,9 @@ class AppHelper
     {
         return preg_replace('/\D/', '', $input);
     }
+
+    public static function removeSpecialCharacters($string): mixed
+    {
+        return preg_replace('/[^A-Za-z0-9]/', '', $string);
+    }
 }
